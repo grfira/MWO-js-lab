@@ -1,82 +1,33 @@
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>JS Lab</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, serif;
-        }
-
-        h1 {
-            color: #0B3954;
-        }
-
-        div.green {
-            color: green;
-        }
-    </style>
+    <title>Refleksomierzacz - JS Lab</title>
+    <link rel="stylesheet" href="layout.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 <div id="app">
-    <h1 id="main-header">Moja aplikacja</h1>
-    <p>To będzie gra. A oto co muszę zrobić:</p>
-    <ol>
-        <li class="boring">Nauczyć się HTML</li>
-        <li class="boring">Nauczyć się CSS</li>
-        <li>Nauczyć się JS</li>
-        <li id="super-important">Zaimplementować</li>
-    </ol>
-
-    <!--    <button type="button" onclick="removeBoringStuff()">Usuń nudne rzeczy</button>-->
-    <button type="button" onmouseover="removeBoringStuff()">Usuń nudne rzeczy</button>
-    <p>
-        <input type="text" id="myTextField">
-        <input type="checkbox" id="myCheckbox">
-        <button type="button" onclick="readValues()">Odczytaj wartości</button>
-    </p>
+    <h1 id="main-header">Refleksomierzacz</h1>
+    <p> Aby zagrać naciśnij przycisk "START" oraz przesuń wskaźnik myszy na pole gry (obszar poniżej przycisku START /
+        STOP).
+        Celem jest jak najszybsze kliknięcie w pole gry po zmianie koloru.</p>
+    <p>Powodzenia!</p>
 </div>
-<script>
-    // alert('Witamy witamy');
-    console.log("Witamy!")
+<div>
+    <button id="game_button" class="buttonGameStopped" type="button" onclick="changeGameState()">START</button>
+</div>
 
-    // const header = document.getElementById('main-header');
-    // alert(header.innerText);
-    //
-    const nudy = document.querySelectorAll("#app .boring");
-    nudy.forEach(element => {
-        // alert(`Nuda: ${element.innerText}`);
-        //     element.classList.remove('boring');
-    });
-
-    let div = document.createElement('div');
-    div.classList.add('green');
-    div.innerText = 'Zielony tekst (jeśli dodasz CSS)';
-    document.getElementById('app').append(div);
-
-    let listItem = document.createElement('li');
-    listItem.innerText = 'Zagrać';
-    // dodaję na koniec listy
-    document.querySelector("#app ol li:last-child").after(listItem); // jest też before
-
-    // document.querySelectorAll('#app .boring').forEach(e=>e.remove());
-
-
-    div.classList.remove("foo");
-    div.classList.add("anotherclass");
-
-    function removeBoringStuff() {
-        document.querySelectorAll('#app .boring').forEach(e => e.remove())
-    }
-
-    function readValues(){
-        const textField= document.getElementById('myTextField')
-        const checkbox =document.getElementById('myCheckbox')
-        if(checkbox.checked){
-            alert(textField.value)
-        }
-    }
-</script>
+<div id="gameArea" onclick="stopGameClock()" onmouseover="activateGameArea()"></div>
+<ul id="results">
+    <li id="fastestResponse"> Najkrótszy czas reakcji: - ms</li>
+    <li id="slowestResponse"> Najdłuższy czas reakcji: - ms</li>
+    <li id="averageResponse"> Średni czas reakcji: - ms</li>
+    <li id="responseTable"> Czasy reakcji w milisekundach: -</li>
+    <li></li>
+    <li id="fastestResponseEver"> Najkrótszy czas reakcji - najlepszy wynik: - ms</li>
+    <li></li>
+    <li id="numberOfFalseStarts"> Klikniecia przed zmianą koloru: -</li>
+</ul>
 </body>
 </html>
